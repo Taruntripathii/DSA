@@ -1,0 +1,27 @@
+name: Sync LeetCode
+
+# Runs on GitHub's servers — your computer does NOT need to be on.
+on:
+  # Daily at 02:30 UTC (= 08:00 IST). Adjust the cron if you want a different time.
+  schedule:
+    - cron: "30 2 * * *"
+  # Lets you trigger a sync manually from the Actions tab (Run workflow).
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync accepted LeetCode submissions to this repo
+        # Check https://github.com/joshcai/leetcode-sync/releases for the latest tag
+        # and bump this version if a newer one is available.
+        uses: joshcai/leetcode-sync@v1.5
+        with:
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
+          # Optional settings:
+          destination-folder: leetcode      # all problem folders go under /leetcode
+          verbose: true                      # log skipped vs. synced problems
+          # filter-duplicate-secs: 86400     # ignore re-submits within 24h of the last sync
+          # commit-header: "[LeetCode Sync]" # prefix for auto-commit messages
