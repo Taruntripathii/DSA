@@ -15,7 +15,7 @@ jobs:
       - name: Sync accepted LeetCode submissions to this repo
         # Check https://github.com/joshcai/leetcode-sync/releases for the latest tag
         # and bump this version if a newer one is available.
-        uses: joshcai/leetcode-sync@v1.5
+        uses: joshcai/leetcode-sync@master
         with:
           github-token: ${{ github.token }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
