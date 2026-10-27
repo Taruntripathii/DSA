@@ -13,8 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Sync accepted LeetCode submissions to this repo
-        # Check https://github.com/joshcai/leetcode-sync/releases for the latest tag
-        # and bump this version if a newer one is available.
+        #Pinned to master because v1.5 crashes on Pandas (pythondata) submissions.
         uses: joshcai/leetcode-sync@master
         with:
           github-token: ${{ github.token }}
